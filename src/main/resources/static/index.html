@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherHub - Beautiful Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="app-container" id="appContainer">
+    <!-- Animated Background Elements -->
+    <div class="bg-animation">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+
+        <!-- Twinkling Stars -->
+        <div class="star star-1"><i class="fas fa-star"></i></div>
+        <div class="star star-2"><i class="fas fa-sparkles"></i></div>
+        <div class="star star-3"><i class="fas fa-star"></i></div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Header -->
+        <header class="hero-header">
+            <div class="logo-container">
+                <div class="logo-wrapper">
+                    <div class="logo-glow"></div>
+                    <div class="logo-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                </div>
+            </div>
+
+            <h1 class="main-title">
+                Weather<span class="highlight">Hub</span>
+            </h1>
+
+            <p class="subtitle">✨ Discover Beautiful Weather Around The World ✨</p>
+
+            <div class="time-display">
+                <div class="status-dot"></div>
+                <span id="currentTime"></span>
+            </div>
+        </header>
+
+        <!-- Enhanced Search Section -->
+        <div class="search-section">
+            <div class="search-card">
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <div class="input-glow"></div>
+                        <div class="search-input-container">
+                            <i class="fas fa-map-marker-alt search-icon"></i>
+                            <input
+                                    type="text"
+                                    id="cityInput"
+                                    placeholder="🌍 Enter any city name (Bhopal, Jaipur, Chennai)..."
+                                    autocomplete="off"
+                            />
+                        </div>
+                    </div>
+
+                    <button id="searchBtn" class="search-button">
+                        <i class="fas fa-search"></i>
+                        <span>Search Weather</span>
+                    </button>
+                </div>
+
+                <div id="error" class="error-message hidden">
+                    <span>⚠️</span>
+                    <span id="errorText"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Display -->
+        <div id="weatherCard" class="weather-card hidden">
+            <div class="weather-header">
+                <div class="location-info">
+                    <div class="location-dot"></div>
+                    <i class="fas fa-map-marker-alt location-icon"></i>
+                    <h2 id="cityName"></h2>
+                </div>
+            </div>
+
+            <div class="weather-main">
+                <div class="weather-display-grid">
+                    <!-- Weather Icon & Temperature -->
+                    <div class="weather-primary">
+                        <div class="weather-icon-container">
+                            <i id="weatherIcon" class="weather-icon"></i>
+                        </div>
+                        <div class="temperature-section">
+                            <div class="temperature">
+                                <span id="temp"></span>°
+                            </div>
+                            <div class="description-badge">
+                                <span id="description"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weather Stats -->
+                    <div class="weather-stats">
+                        <div class="stat-card humidity-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">Humidity</div>
+                                <div class="stat-value" id="humidity"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card wind-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">Wind Speed</div>
+                                <div class="stat-value" id="windSpeed"></div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card visibility-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">Visibility</div>
+                                <div class="stat-value" id="visibility"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Default State -->
+        <div id="defaultMessage" class="default-message">
+            <div class="default-icon-container">
+                <div class="default-icon-glow"></div>
+                <div class="default-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+            </div>
+
+            <h3 class="default-title">🌟 Discover Weather Magic</h3>
+            <p class="default-subtitle">
+                Enter any city name to unlock real-time weather information with stunning visual details and insights
+            </p>
+
+            <div class="quick-cities">
+                <!-- North -->
+                <button class="quick-city-btn" data-city="Srinagar">
+                    <span class="flag">🇮🇳</span>
+                    <span>Srinagar (JK)</span>
+                </button>
+                <button class="quick-city-btn" data-city="Delhi">
+                    <span class="flag">🇮🇳</span>
+                    <span>Delhi (DL)</span>
+                </button>
+
+                <!-- South -->
+                <button class="quick-city-btn" data-city="Bengaluru">
+                    <span class="flag">🇮🇳</span>
+                    <span>Bengaluru (KA)</span>
+                </button>
+                <button class="quick-city-btn" data-city="Thiruvananthapuram">
+                    <span class="flag">🇮🇳</span>
+                    <span>Thiruvananthapuram (KL)</span>
+                </button>
+
+                <!-- East -->
+                <button class="quick-city-btn" data-city="Kolkata">
+                    <span class="flag">🇮🇳</span>
+                    <span>Kolkata (WB)</span>
+                </button>
+                <button class="quick-city-btn" data-city="Guwahati">
+                    <span class="flag">🇮🇳</span>
+                    <span>Guwahati (AS)</span>
+                </button>
+
+                <!-- West -->
+                <button class="quick-city-btn" data-city="Mumbai">
+                    <span class="flag">🇮🇳</span>
+                    <span>Mumbai (MH)</span>
+                </button>
+                <button class="quick-city-btn" data-city="Ahmedabad">
+                    <span class="flag">🇮🇳</span>
+                    <span>Ahmedabad (GJ)</span>
+                </button>
+
+                <!-- Central -->
+                <button class="quick-city-btn" data-city="Indore">
+                    <span class="flag">🇮🇳</span>
+                    <span>Indore (MP)</span>
+                </button>
+            </div>
+
+            <!-- Enhanced Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span>Powered by OpenWeatherMap API</span>
+                <span class="separator">•</span>
+                <span>Made with</span>
+                <span class="heart">❤️</span>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
