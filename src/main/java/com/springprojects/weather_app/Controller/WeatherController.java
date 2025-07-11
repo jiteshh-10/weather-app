@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*") // This enables frontend-backend communication
 @RestController
-@RequestMapping("/api")
-@CrossOrigin(origins = "*") // Allow all origins for development
+@RequestMapping("/api")// Allow all origins for development
 public class WeatherController {
 
     @Autowired
