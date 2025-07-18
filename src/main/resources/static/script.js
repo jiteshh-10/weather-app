@@ -1,5 +1,3 @@
-const API_BASE_URL = 'http://localhost:9090/api';
-
 // DOM Elements
 const appContainer = document.getElementById('appContainer');
 const cityInput = document.getElementById('cityInput');
