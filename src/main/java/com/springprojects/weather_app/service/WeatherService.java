@@ -6,6 +6,7 @@ import com.springprojects.weather_app.model.WeatherResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.context.annotation.Bean;
 
 @Service
 public class WeatherService {
@@ -14,8 +15,18 @@ public class WeatherService {
     private String apiKey;
 
     private final String API_URL = "https://api.openweathermap.org/data/2.5/weather";
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    // Use constructor injection for RestTemplate
+    public WeatherService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @Bean
+    public static RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     public WeatherResponse getWeatherByCity(String city) throws Exception {
         String url = String.format("%s?q=%s&appid=%s&units=metric", API_URL, city, apiKey);
