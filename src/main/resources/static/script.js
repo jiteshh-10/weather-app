@@ -1,3 +1,5 @@
+const API_BASE_URL = 'http://localhost:9090/api';
+
 // DOM Elements
 const appContainer = document.getElementById('appContainer');
 const cityInput = document.getElementById('cityInput');
@@ -130,8 +132,7 @@ async function searchWeather() {
     hideWeatherCard();
 
     try {
-    const response = await fetch(`/api/weather?city=${encodeURIComponent(city)}`);
-
+        const response = await fetch(`${API_BASE_URL}/weather?city=${encodeURIComponent(city)}`);
 
         if (!response.ok) {
             throw new Error('City not found');
